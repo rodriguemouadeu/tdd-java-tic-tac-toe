@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.packtpublishing.tddjava.chap03tictactoe.TicTacToeTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-07-04T15:47:57" hostname="rodrigue" time="0.014">
+  <properties/>
+  <testcase name="givenAGameWhenMovingToAnOccupiedPositionThenPositionTakenExceptionIsThrown" classname="com.packtpublishing.tddjava.chap03tictactoe.TicTacToeTest" time="0.012"/>
+  <testcase name="givenAGameWhenPlacingYPositionOutOfTheBoardThenPositionOutOfBoardExceptionIsThrown" classname="com.packtpublishing.tddjava.chap03tictactoe.TicTacToeTest" time="0.0"/>
+  <testcase name="givenAGameWhenPlacingXPositionOutOfTheBoardThenPositionOutOfBoardExceptionIsThrown" classname="com.packtpublishing.tddjava.chap03tictactoe.TicTacToeTest" time="0.001"/>
+  <system-out><![CDATA[null  null  null  
+null  null  null  
+null  O  null  
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
