@@ -8,21 +8,22 @@ public class TicTacToe {
     private static int BOARD_SIZE = 3;
 
     Player[][] board = new Player[BOARD_SIZE][BOARD_SIZE];
-    private Player lastPlayer;
+    public Player lastPlayer = Player.X;
 
     public void play(int xPosition, int yPosition) {
         checkPositionIsOnBoard("X-position", xPosition);
         checkPositionIsOnBoard("Y-position", yPosition);
         checkPositionIsNotTaken(xPosition, yPosition);
 
-        lastPlayer = nextPlayer();
-        updateBoardCell(xPosition, yPosition, lastPlayer);
+        updateBoardCell(xPosition, yPosition);
+
+        nextPlayer();
 
         printBoard();
     }
 
-    private void updateBoardCell(int xPosition, int yPosition, Player player) {
-        board[xPosition][yPosition] = player;
+    private void updateBoardCell(int xPosition, int yPosition) {
+        board[xPosition][yPosition] = lastPlayer;
     }
 
     private void printBoard() {
@@ -37,7 +38,7 @@ public class TicTacToe {
     }
 
     private Player nextPlayer() {
-        if(lastPlayer == null || lastPlayer == Player.X){
+      if(lastPlayer == Player.X){
             lastPlayer = Player.O;
         } else {
             lastPlayer = Player.X;
@@ -55,5 +56,9 @@ public class TicTacToe {
         if(position < 0 || position >= BOARD_SIZE) {
             throw new PositionNotOnBoardException(positionName, position);
         }
+    }
+
+    public Player getNextPlayer() {
+        return lastPlayer;
     }
 }

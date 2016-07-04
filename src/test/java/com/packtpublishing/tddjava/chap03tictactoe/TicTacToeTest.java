@@ -7,6 +7,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.junit.Assert.assertEquals;
+
 public class TicTacToeTest {
 
     public static TicTacToe ticTacToe;
@@ -37,6 +39,26 @@ public class TicTacToeTest {
         exception.expect(PositionTakenException.class);
         ticTacToe.play(2, 1);
     }
+
+    @Test
+    public void givenAGameWhenMakingFirstMoveThenPlayerXFirstPlays(){
+        assertEquals(Player.X, ticTacToe.getNextPlayer());
+    }
+
+    @Test
+    public void givenAGameWhenMakingSecondMoveThenPlayerOPlays(){
+        ticTacToe.play(0, 0);
+        assertEquals(Player.O, ticTacToe.getNextPlayer());
+    }
+
+    @Test
+    public void givenAGameWhenPlayerOPlaysThenPlayerXPlaysNext(){
+        ticTacToe.play(0, 0);
+        assertEquals(Player.O, ticTacToe.getNextPlayer());
+        ticTacToe.play(1, 0);
+        assertEquals(Player.X, ticTacToe.getNextPlayer());
+    }
+
 
 
 }

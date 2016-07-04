@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>TicTacToe.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tdd-java-chap03-tic-tac-toe</a> &gt; <a href="index.source.html" class="el_package">com.packtpublishing.tddjava.chap03tictactoe</a> &gt; <span class="el_source">TicTacToe.java</span></div><h1>TicTacToe.java</h1><pre class="source lang-java linenums">package com.packtpublishing.tddjava.chap03tictactoe;
+
+import com.packtpublishing.tddjava.chap03tictactoe.exceptions.PositionNotOnBoardException;
+import com.packtpublishing.tddjava.chap03tictactoe.exceptions.PositionTakenException;
+
+<span class="fc" id="L6">public class TicTacToe {</span>
+
+<span class="fc" id="L8">    private static int BOARD_SIZE = 3;</span>
+
+<span class="fc" id="L10">    Player[][] board = new Player[BOARD_SIZE][BOARD_SIZE];</span>
+<span class="fc" id="L11">    public Player lastPlayer = Player.X;</span>
+
+    public void play(int xPosition, int yPosition) {
+<span class="fc" id="L14">        checkPositionIsOnBoard(&quot;X-position&quot;, xPosition);</span>
+<span class="fc" id="L15">        checkPositionIsOnBoard(&quot;Y-position&quot;, yPosition);</span>
+<span class="fc" id="L16">        checkPositionIsNotTaken(xPosition, yPosition);</span>
+
+<span class="fc" id="L18">        updateBoardCell(xPosition, yPosition);</span>
+
+<span class="fc" id="L20">        nextPlayer();</span>
+
+<span class="fc" id="L22">        printBoard();</span>
+<span class="fc" id="L23">    }</span>
+
+    private void updateBoardCell(int xPosition, int yPosition) {
+<span class="fc" id="L26">        board[xPosition][yPosition] = lastPlayer;</span>
+<span class="fc" id="L27">    }</span>
+
+    private void printBoard() {
+<span class="fc" id="L30">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        for(int xpos = 0; xpos &lt; BOARD_SIZE; xpos++) {</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">            for (int ypos = 0; ypos &lt; BOARD_SIZE; ypos++) {</span>
+<span class="fc" id="L33">                sb.append(board[xpos][ypos] + &quot;  &quot;);</span>
+            }
+<span class="fc" id="L35">            sb.append(&quot;\n&quot;);</span>
+        }
+<span class="fc" id="L37">        System.out.println(sb);</span>
+<span class="fc" id="L38">    }</span>
+
+    private Player nextPlayer() {
+<span class="fc bfc" id="L41" title="All 2 branches covered.">      if(lastPlayer == Player.X){</span>
+<span class="fc" id="L42">            lastPlayer = Player.O;</span>
+        } else {
+<span class="fc" id="L44">            lastPlayer = Player.X;</span>
+        }
+<span class="fc" id="L46">        return lastPlayer;</span>
+    }
+
+    private void checkPositionIsNotTaken(int xPosition, int yPosition) {
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if(board[xPosition][yPosition] != null){</span>
+<span class="fc" id="L51">            throw new PositionTakenException(xPosition, yPosition);</span>
+        }
+<span class="fc" id="L53">    }</span>
+
+    private void checkPositionIsOnBoard(String positionName, int position) {
+<span class="pc bpc" id="L56" title="1 of 4 branches missed.">        if(position &lt; 0 || position &gt;= BOARD_SIZE) {</span>
+<span class="fc" id="L57">            throw new PositionNotOnBoardException(positionName, position);</span>
+        }
+<span class="fc" id="L59">    }</span>
+
+    public Player getNextPlayer() {
+<span class="fc" id="L62">        return lastPlayer;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
